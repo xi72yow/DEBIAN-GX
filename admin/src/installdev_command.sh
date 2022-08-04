@@ -3,9 +3,8 @@ echo "# code for 'dgxa installdev' goes here"
 echo "# you can edit it freely and regenerate (it will not be overwritten)"
 inspect_args
 
-apt update
-apt install install dpkg-dev ruby-full live-build rpm -y
+check_root
 
-cd /config-app/
-npm install
-cd ..
+sudo apt update
+sudo apt install install dpkg-dev ruby-full live-build rpm curl -y
+sudo gem install bashly

@@ -29,10 +29,53 @@ In order to create your own Debian spin, it is advisable to test and work with L
 
 <details><summary><b>Show instructions</b></summary>
 
-1. Enim ipsum eiusmod aliquip laboris qui pariatur:
+0. clone this repo and go into it
 
    ```sh
-   deb-gx$ ./admin/dbgxa d
+   git clone https://github.com/xi72yow/DEBIAN-GX.git
+   cd DEBIAN-GX
+   ```
+
+1. make the admin script executeabele
+
+   ```sh
+   chmod +x ./admin/dgxa
+   ```
+
+2. download all needed files
+
+   ```sh
+   chmod +x ./admin/dgxa
+   ```
+
+3. set calamares
+
+   ```sh
+   ./admin/dgxa sc
+   ```
+
+4. set login screen
+
+   ```sh
+   ./admin/dgxa sl
+   ```
+
+5. set login plymouth
+
+   ```sh
+   ./admin/dgxa sp
+   ```
+
+6. install dev dependencies
+
+   ```sh
+   sudo ./admin/dgxa id
+   ```
+
+6. build DEBIAN-GX
+
+   ```sh
+   sudo ./admin/dgxa b
    ```
 
 </details>

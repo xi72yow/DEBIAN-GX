@@ -11,14 +11,21 @@ packages_dir="build/config/packages.chroot/"
 
 #theming
 #download branding files to branding directory
+#curl -SL https://www.xi72yow.de/DEB-GX/branding.zip  | tar -xz - -C
+
 #wallpaper
 if validate_file_exists "${styles_dir}backgrounds/debgx/Wallpaper.png"; then
     echo "Wallpaper.png found."
     echo "skip this step"
 else
-    mkdir -p "${styles_dir}backgrounds/debgx"
-    cp ./branding/Wallpaper.png "${styles_dir}backgrounds/debgx/Wallpaper.png"
-    echo "Wallpaper.png copied."
+    if validate_dir_exists ./branding; then
+        mkdir -p "${styles_dir}backgrounds/debgx"
+        cp ./branding/Wallpaper.png "${styles_dir}backgrounds/debgx/Wallpaper.png"
+        echo "Wallpaper.png copied."
+    else
+        echo "$(red ERROR: ) ./branding not found. "
+        exit
+    fi
 fi
 
 # dracula theme gtk and icons
@@ -137,6 +144,3 @@ else
     mkdir -p $FILE_SYSTEM_CAP_FOLDER/usr/local/bin
     git clone https://github.com/xi72yow/x-tune.git $FILE_SYSTEM_CAP_FOLDER/usr/local/bin
 fi
-
-#Download branding
-#curl -SL https://www.xi72yow.de/DEB-GX/branding.zip  | tar -xz - -C
