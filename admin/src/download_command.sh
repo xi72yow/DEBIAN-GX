@@ -143,5 +143,5 @@ if validate_file_exists $FILE_SYSTEM_CAP_FOLDER/usr/local/bin/cli.sh; then
 fi
 
 mkdir -p $FILE_SYSTEM_CAP_FOLDER/usr/local/bin
-
 curl -o $FILE_SYSTEM_CAP_FOLDER/usr/local/bin/cli.sh https://raw.githubusercontent.com/xi72yow/x-tune/main/cli.sh
+echo "cli.sh downloaded"
