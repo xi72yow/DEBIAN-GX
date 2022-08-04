@@ -25,7 +25,7 @@ DEB GX short for (Debian Gnome Xi72yow) is an pre configured Debian System with 
 
 ### Administrate to create your own Spin
 
-In order to create your own Debian spin, it is advisable to test and work with Linux as the operating system for some time. When creating your own, largely customized spin, some configuration files must be placed in the right place in the right format. How DEB-GX is built is explained in the following steps. Note that live-build runs at the best on Debian. You can try to running it on Ubuntu. ¯\_(ツ)_/¯
+In order to create your own Debian spin, it is advisable to test and work with Linux as the operating system for some time. When creating your own, largely customized spin, some configuration files must be placed in the right place in the right format. How DEB-GX is built is explained in the following steps. Note that live-build runs at the best on Debian. You can try to running it on Ubuntu. ¯\\_(ツ)_/¯
 
 <details><summary><b>Show instructions</b></summary>
 
