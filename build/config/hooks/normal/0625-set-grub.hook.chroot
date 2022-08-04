@@ -1,0 +1,6 @@
+#!/bin/sh
+
+echo "set grub"
+# todo: set grub maybe as a build hook? worst case it is configurated by config app
+#sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=0/' /etc/default/grub
+#sudo update-grub2

@@ -1,0 +1,48 @@
+name: dgxa
+help: application to administrate deb-gx live build from debgx root folder
+version: 0.1.0
+
+commands:
+  - name: download
+    alias: d
+    help: download dracula styles and .deb Packages
+
+  - name: installdev
+    alias: id
+    help: install admin dev dependencies
+
+  - name: generatecodeex
+    alias: gce
+    help: gererate VSCode extension install script from current setup
+
+  - name: generatechromeex
+    alias: gche
+    help: gererate Chrome extension list from current setup
+
+  - name: buildca
+    alias: bca
+    help: build config-app
+
+  - name: generateloginscreen
+    alias: gls
+    help: generates gresource for login screen needs gnome-shell-theme.gresource in lfs and wallpaper in branding
+
+  - name: generateplymouthsplash
+    alias: gps
+    help: generates plymouth splash from plymouth.mp4 in branding or used the debgx_plymouth
+
+  - name: build
+    alias: b
+    help: build debgx
+
+  - name: setcalamares
+    alias: sc
+    help: set files for calamaris installer from branding
+
+  - name: setlogin
+    alias: sl
+    help: set login style
+
+  - name: setplymouth
+    alias: sp
+    help: set setplymouth animation

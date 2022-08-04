@@ -1,0 +1,17 @@
+#!/bin/sh
+set -e
+
+echo "doing some stuff"
+
+#echo 'pref("browser.startup.homepage", "https://www.startpage.com");' >>/etc/firefox-esr/firefox-esr.js
+#echo 'pref("network.proxy.type", 4);' >>/etc/firefox-esr/firefox-esr.js
+
+## Configure gdm3:
+#sed -i "s/^#WaylandEnable=false$/WaylandEnable=false/" /etc/gdm3/daemon.conf
+
+#sed -i -e "s/# disable-user-list=.*/disable-user-list=true/" \
+#    -e "s/# sleep-inactive-ac-timeout=.*/sleep-inactive-ac-timeout=600/" \
+#    -e "s/# sleep-inactive-ac-type=.*/sleep-inactive-ac-type='interactive'\npower-button-action='interactive'/" \
+#    -e "s/# banner-message-enable=.*/banner-message-enable=true/" \
+#    -e "s/# banner-message-text=.*/banner-message-text='Welcome to Gnome Desktop Environment'/" \
+#    /etc/gdm3/greeter.dconf-defaults

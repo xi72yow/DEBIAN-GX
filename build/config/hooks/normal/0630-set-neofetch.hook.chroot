@@ -1,0 +1,4 @@
+#!/bin/sh
+
+echo "set neofetch"
+#alias neofetch='neofetch --source /path/to/ascii/art'

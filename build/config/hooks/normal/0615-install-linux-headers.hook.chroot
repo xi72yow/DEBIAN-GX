@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "install linux-headers"
+
+apt install linux-headers-`uname -r` -y

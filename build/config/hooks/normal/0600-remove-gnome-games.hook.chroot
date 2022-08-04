@@ -1,0 +1,6 @@
+#!/bin/sh
+
+echo "remove gnome games"
+
+apt purge gnome-games -y
+apt autoremove -y

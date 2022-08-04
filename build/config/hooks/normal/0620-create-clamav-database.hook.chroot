@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "create clamav database"
+
+freshclam

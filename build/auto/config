@@ -1,0 +1,21 @@
+#!/bin/sh
+
+set -e
+
+lb config noauto \
+     -a amd64 \
+     --distribution bullseye \
+     --linux-packages linux-image-5.18.0-0.bpo.1 \
+     --archive-areas "main contrib non-free" \
+     --backports true \
+     --bootappend-live "boot=live components locales=de_DE.UTF-8 keyboard-layouts=de hostname=deb-gx username=mr-x" \
+     --updates true \
+     --security true \
+     --cache true \
+     --debian-installer live \
+     --debian-installer-gui true \
+     --iso-volume "debgx00" \
+     --iso-application "debgx00" \
+     --iso-publisher "xi72yow.de" \
+     --iso-preparer "xi72yow.de" \
+	"${@}"

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "set plymouth"
+
+plymouth-set-default-theme -R debgx_plymouth
