@@ -1,9 +1,9 @@
 check_current_folder_funktion() {
     result=${PWD##*/}
-    if [ $result == "deb-gx" ]; then
+    if [ $result == "DEB-GX" ]; then
         echo "Right folder."
     else
-        log "Wrong folder. Please change to 'deb-gx' folder."
+        log "Wrong folder. Please change to 'DEB-GX' folder."
         exit
     fi
 }
