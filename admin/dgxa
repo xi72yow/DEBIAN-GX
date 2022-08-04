@@ -438,10 +438,10 @@ inspect_args() {
 # src/lib/check_current_folder_function.sh
 check_current_folder_funktion() {
     result=${PWD##*/}
-    if [ $result == "deb-gx" ]; then
+    if [ $result == "DEB-GX" ]; then
         echo "Right folder."
     else
-        log "Wrong folder. Please change to 'deb-gx' folder."
+        log "Wrong folder. Please change to 'DEB-GX' folder."
         exit
     fi
 }
@@ -823,6 +823,8 @@ dgxa_generateplymouthsplash_command() {
   echo "# you can edit it freely and regenerate (it will not be overwritten)"
   inspect_args
 
+  #to generate plymouth splash screen, for spezific mp4
+
   show_current_splash() {
       check_root
       DURATION=$1
@@ -839,7 +841,7 @@ dgxa_generateplymouthsplash_command() {
   }
 
   mkdir -p $FILE_SYSTEM_CBP_FOLDER/usr/share/plymouth/themes
-  cp -r ./branding/debgx_plymouth $FILE_SYSTEM_CBP_FOLDER/usr/share/plymouth/themes
+  #cp -r ./branding/debgx_plymouth $FILE_SYSTEM_CBP_FOLDER/usr/share/plymouth/themes
 }
 
 # :command.function
@@ -860,9 +862,15 @@ dgxa_build_command() {
   lb config
   sudo lb build
 
+  if [ $? -eq 0 ]; then
+      sudo mv ./build/live-image-amd64.hybrid.iso ./build/deb-gx_000.hybrid.iso
+  else
+      echo "There was an $(red error) building the iso."
+  fi
+
   end=$(date +%s)
   runtime=$((end - start))
-  echo "Build time: $runtime seconds"
+  echo "Time: $runtime seconds"
 }
 
 # :command.function
@@ -911,6 +919,15 @@ dgxa_setplymouth_command() {
   echo "# code for 'dgxa setplymouth' goes here"
   echo "# you can edit it freely and regenerate (it will not be overwritten)"
   inspect_args
+
+  if validate_dir_exists "./branding/debgx_plymouth"; then
+      mkdir -p $FILE_SYSTEM_CBP_FOLDER/usr/share/plymouth/themes
+      cp -r ./branding/debgx_plymouth $FILE_SYSTEM_CBP_FOLDER/usr/share/plymouth/themes
+  else
+      echo "./branding/debgx_plymouth not found."
+      echo "please create an debgx_plymouth dir (e.g with this script) and copy it to ./branding/."
+      exit
+  fi
 }
 
 # :command.parse_requirements

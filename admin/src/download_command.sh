@@ -111,3 +111,5 @@ curl --location --output "${packages_dir}GGetMp3_amd64.deb" --write-out "%{url_e
 dpkg-name "${packages_dir}GGetMp3_amd64.deb"
 
 #Download Config App
+mkdir -p $FILE_SYSTEM_CAP_FOLDER/usr/local/bin
+git clone https://github.com/xi72yow/x-tune.git $FILE_SYSTEM_CAP_FOLDER/usr/local/bin
