@@ -1,4 +1,4 @@
-![alt text](https://xi72yow.de/gx-assets/banner.png)
+![DEB-GX Banner](https://xi72yow.de/gx-assets/banner.png)
 <h1 align="left">DEBIAN-GX</h1>
 
 <p align="center">
@@ -14,7 +14,7 @@
 
 ## Waht is DEB-GX
 
-DEB GX short for (Debian Gnome xi72yow) is an pre configured Debian System with Gnome Desktop. This Debian Spin is ready to Work an Fun. If you are interested see this Video (soon) or try it by yourself.
+DEB GX short for (Debian Gnome xi72yow) is an pre configured Debian System with Gnome Desktop. This Debian Spin is ready to work with and then entertain the user. If you are interested see this Video (soon) or try it by yourself.
 
 ## Usage
 
