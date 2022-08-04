@@ -14,7 +14,9 @@ lb config
 sudo lb build
 
 if [ $? -eq 0 ]; then
-    sudo mv ./build/live-image-amd64.hybrid.iso ./build/deb-gx_000.hybrid.iso
+    #sudo mv ./build/live-image-amd64.hybrid.iso ./build/deb-gx_000-amd64.hybrid.iso
+    echo "Build $(green done). See build/live-image-amd64.hybrid.iso"
+
 else
     echo "There was an $(red error) building the iso."
 fi
