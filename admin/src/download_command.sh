@@ -74,7 +74,7 @@ fi
 if validate_dir_exists "${packages_dir}"; then
     echo "debgx packages folder found."
     echo "remove this folder and regenerate"
-
+    rm -rf "${packages_dir}"
 fi
 
 mkdir -p "${packages_dir}"
