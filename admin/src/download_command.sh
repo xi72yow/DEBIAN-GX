@@ -9,50 +9,69 @@ ext_dir="build/config/includes.chroot_after_packages/usr/share/gnome-shell/exten
 styles_dir="build/config/includes.chroot_after_packages/usr/share/"
 packages_dir="build/config/packages.chroot/"
 
-if [ -z "$(ls -A $styles_dir)" ]; then
-    echo "styles_dir Empty"
-else
-    echo "styles_dir Not Empty"
-fi
-
-if [ -z "$(ls -A $packages_dir)" ]; then
-    echo "packages_dir Empty"
-else
-    echo "packages_dir Not Empty"
-fi
-
 #theming
 #download branding files to branding directory
 #wallpaper
-mkdir -p "${styles_dir}backgrounds/debgx"
+if validate_file_exists "${styles_dir}backgrounds/debgx/Wallpaper.png"; then
+    echo "Wallpaper.png found."
+    echo "skip this step"
+else
+    mkdir -p "${styles_dir}backgrounds/debgx"
+    cp ./branding/Wallpaper.png "${styles_dir}backgrounds/debgx/Wallpaper.png"
+    echo "Wallpaper.png copied."
+fi
 
-cp ./branding/Wallpaper.png "${styles_dir}backgrounds/debgx/Wallpaper.png"
+# dracula theme gtk and icons
 
-# dracula theme
-mkdir -p "${styles_dir}icons"
-mkdir -p "${styles_dir}themes"
+if validate_dir_exists "${styles_dir}icons"; then
+    echo "icons folder found."
+    echo "skip this step"
+else
+    mkdir -p "${styles_dir}icons"
+    curl --location --output "${styles_dir}DraculaIcons.zip" --write-out "%{url_effective}\n" "https://github.com/dracula/gtk/files/5214870/Dracula.zip"
+    unzip "${styles_dir}DraculaIcons.zip" -d "${styles_dir}icons"
+    rm -rf "${styles_dir}DraculaIcons.zip"
+fi
+
+if validate_dir_exists "${styles_dir}themes"; then
+    echo "themes folder found."
+    echo "skip this step"
+else
+    mkdir -p "${styles_dir}themes"
+    curl --location --output "${styles_dir}Dracula.zip" --write-out "%{url_effective}\n" "https://github.com/dracula/gtk/archive/master.zip"
+    unzip "${styles_dir}Dracula.zip" -d "${styles_dir}themes"
+    mv "${styles_dir}themes/gtk-master" "${styles_dir}themes/Dracula"
+    rm -rf "${styles_dir}Dracula.zip"
+fi
+
+#gedit theme
+if validate_file_exists "${home_dir}.local/share/gedit/styles/dracula.xml"; then
+    echo "gedit theme folder found."
+    echo "skip this step"
+else
+    mkdir -p "${home_dir}.local/share/gedit/styles/"
+    curl -o "${home_dir}.local/share/gedit/styles/dracula.xml" https://raw.githubusercontent.com/dracula/gedit/master/dracula.xml
+fi
+
+#gnome-shell extensions
+if validate_dir_exists "${ext_dir}clipboard-indicator@tudmotu.com"; then
+    echo "gnome-shell extensions clipboard-indicator folder found."
+    echo "skip this step"
+else
+    #clipboard indicator
+    mkdir -p "${ext_dir}"
+    git clone https://github.com/Tudmotu/gnome-shell-extension-clipboard-indicator.git "${ext_dir}clipboard-indicator@tudmotu.com"
+fi
+
+#download packages
+if validate_dir_exists "${packages_dir}"; then
+    echo "debgx packages folder found."
+    echo "remove this folder and regenerate"
+
+fi
 
 mkdir -p "${packages_dir}"
 
-curl --location --output "${styles_dir}Dracula.zip" --write-out "%{url_effective}\n" "https://github.com/dracula/gtk/archive/master.zip"
-unzip "${styles_dir}Dracula.zip" -d "${styles_dir}themes"
-mv "${styles_dir}themes/gtk-master" "${styles_dir}themes/Dracula"
-rm -rf "${styles_dir}Dracula.zip"
-
-curl --location --output "${styles_dir}DraculaIcons.zip" --write-out "%{url_effective}\n" "https://github.com/dracula/gtk/files/5214870/Dracula.zip"
-unzip "${styles_dir}DraculaIcons.zip" -d "${styles_dir}icons"
-rm -rf "${styles_dir}DraculaIcons.zip"
-
-#gedit theme
-mkdir -p "${home_dir}.local/share/gedit/styles/"
-curl -o "${home_dir}.local/share/gedit/styles/dracula.xml" https://raw.githubusercontent.com/dracula/gedit/master/dracula.xml
-
-#gnome-shell extensions
-#clipboard indicator
-mkdir -p "${ext_dir}"
-git clone https://github.com/Tudmotu/gnome-shell-extension-clipboard-indicator.git "${ext_dir}clipboard-indicator@tudmotu.com"
-
-#download packages
 #Github Desktop "Not Official"
 download_URL=$(get_URL_from_latest_release_for_deb "shiftkey/desktop")
 curl --location --output "${packages_dir}Github_Desktop_amd64.deb" --write-out "%{url_effective}\n" $download_URL
@@ -111,8 +130,13 @@ curl --location --output "${packages_dir}GGetMp3_amd64.deb" --write-out "%{url_e
 dpkg-name "${packages_dir}GGetMp3_amd64.deb"
 
 #Download Config App / maybe later submodule
-mkdir -p $FILE_SYSTEM_CAP_FOLDER/usr/local/bin
-git clone https://github.com/xi72yow/x-tune.git $FILE_SYSTEM_CAP_FOLDER/usr/local/bin
+if validate_dir_exists $FILE_SYSTEM_CAP_FOLDER/usr/local/bin; then
+    echo "x-tune folder found."
+    echo "skip this step"
+else
+    mkdir -p $FILE_SYSTEM_CAP_FOLDER/usr/local/bin
+    git clone https://github.com/xi72yow/x-tune.git $FILE_SYSTEM_CAP_FOLDER/usr/local/bin
+fi
 
 #Download branding
 #curl -SL https://www.xi72yow.de/DEB-GX/branding.zip  | tar -xz - -C
