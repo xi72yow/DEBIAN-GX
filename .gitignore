@@ -13,6 +13,7 @@ build/config/includes.chroot_after_packages/etc/skel/.local/share/gedit/styles/d
 *wallpaper*
 *Wallpaper*
 x-tune/
+gx-assets/
 
 #appimage
 balenaEtcher-1.7.9-ia32.AppImage

@@ -2,18 +2,18 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Maintained%3F-Yes-green?style=for-the-badge">
-  <img src="https://img.shields.io/github/license/xi72yow/DEB-GX?style=for-the-badge">
-  <img src="https://img.shields.io/github/stars/xi72yow/DEB-GX?style=for-the-badge">
-  <img src="https://img.shields.io/github/forks/xi72yow/DEB-GX?color=teal&style=for-the-badge">
-  <img src="https://img.shields.io/github/issues/xi72yow/DEB-GX?color=violet&style=for-the-badge">
+  <img src="https://img.shields.io/github/license/xi72yow/DEBIAN-GX?style=for-the-badge">
+  <img src="https://img.shields.io/github/stars/xi72yow/DEBIAN-GX?style=for-the-badge">
+  <img src="https://img.shields.io/github/forks/xi72yow/DEBIAN-GX?color=teal&style=for-the-badge">
+  <img src="https://img.shields.io/github/issues/xi72yow/DEBIAN-GX?color=violet&style=for-the-badge">
 </p>
 
-![DEB-GX logo](./branding-dev/dark.png#gh-dark-mode-only)
-![DEB-GX logo](./branding-dev/light.png#gh-light-mode-only)
+![DEB-GX logo](./gx-assets/logoPNGdark.png#gh-light-mode-only)
+![DEB-GX logo](./gx-assets/logoPNGwhite.png#gh-dark-mode-only)
 
 ## Waht is DEB-GX
 
-DEB GX short for (Debian Gnome Xi72yow) is an pre configured Debian System with Gnome Desktop. This Debian Spin is ready to Work an Fun. If you are interested see this Video or try it by yourself.
+DEB GX short for (Debian Gnome xi72yow) is an pre configured Debian System with Gnome Desktop. This Debian Spin is ready to Work an Fun. If you are interested see this Video (soon) or try it by yourself.
 
 ## Usage
 
@@ -72,7 +72,7 @@ In order to create your own Debian spin, it is advisable to test and work with L
    sudo ./admin/dgxa id
    ```
 
-6. build DEBIAN-GX
+7. build DEBIAN-GX
 
    ```sh
    sudo ./admin/dgxa b
