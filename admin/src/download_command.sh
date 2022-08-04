@@ -23,7 +23,7 @@ else
         cp ./branding/Wallpaper.png "${styles_dir}backgrounds/debgx/Wallpaper.png"
         echo "Wallpaper.png copied."
     else
-        echo "$(red ERROR: ) ./branding not found. "
+        echo "$(red ERROR:) ./branding not found. "
         exit
     fi
 fi
@@ -137,10 +137,11 @@ curl --location --output "${packages_dir}GGetMp3_amd64.deb" --write-out "%{url_e
 dpkg-name "${packages_dir}GGetMp3_amd64.deb"
 
 #Download Config App / maybe later submodule
-if validate_dir_exists $FILE_SYSTEM_CAP_FOLDER/usr/local/bin; then
-    echo "x-tune folder found."
-    echo "skip this step"
-else
-    mkdir -p $FILE_SYSTEM_CAP_FOLDER/usr/local/bin
-    git clone https://github.com/xi72yow/x-tune.git $FILE_SYSTEM_CAP_FOLDER/usr/local/bin
+if validate_file_exists $FILE_SYSTEM_CAP_FOLDER/usr/local/bin/cli.sh; then
+    echo "cli.sh found, remove this file and regenerate"
+    rm -rf $FILE_SYSTEM_CAP_FOLDER/usr/local/bin/cli.sh
 fi
+
+mkdir -p $FILE_SYSTEM_CAP_FOLDER/usr/local/bin
+
+curl -o $FILE_SYSTEM_CAP_FOLDER/usr/local/bin/cli.sh https://raw.githubusercontent.com/xi72yow/x-tune/main/cli.sh
