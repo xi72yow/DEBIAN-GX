@@ -2,7 +2,7 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/Maintained%3F-Yes-green?style=for-the-badge">
-  <img src="https://img.shields.io/github/license/adi1090x/DEB-GX?style=for-the-badge">
+  <img src="https://img.shields.io/github/license/xi72yow/DEB-GX?style=for-the-badge">
   <img src="https://img.shields.io/github/stars/xi72yow/DEB-GX?style=for-the-badge">
   <img src="https://img.shields.io/github/forks/xi72yow/DEB-GX?color=teal&style=for-the-badge">
   <img src="https://img.shields.io/github/issues/xi72yow/DEB-GX?color=violet&style=for-the-badge">
