@@ -1,0 +1,5 @@
+#!/bin/sh
+
+echo "chmod cli"
+
+chmod +x /usr/local/bin/cli.sh
