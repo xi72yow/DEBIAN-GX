@@ -1,4 +1,4 @@
-<h1 align="left">DEB-GX</h1>
+<h1 align="left">DEBIAN-GX</h1>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Maintained%3F-Yes-green?style=for-the-badge">
