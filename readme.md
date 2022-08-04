@@ -1,4 +1,4 @@
-![alt text](https://xi72yow.de/gx-assets/banner.png)
+![DEB-GX Banner](https://xi72yow.de/gx-assets/banner.png)
 <h1 align="left">DEBIAN-GX</h1>
 
 <p align="center">
