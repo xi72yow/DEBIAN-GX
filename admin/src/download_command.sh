@@ -110,6 +110,9 @@ download_URL=$(get_URL_from_latest_release_for_deb "xi72yow/GGetMp3")
 curl --location --output "${packages_dir}GGetMp3_amd64.deb" --write-out "%{url_effective}\n" $download_URL
 dpkg-name "${packages_dir}GGetMp3_amd64.deb"
 
-#Download Config App
+#Download Config App / maybe later submodule
 mkdir -p $FILE_SYSTEM_CAP_FOLDER/usr/local/bin
 git clone https://github.com/xi72yow/x-tune.git $FILE_SYSTEM_CAP_FOLDER/usr/local/bin
+
+#Download branding
+#curl -SL https://www.xi72yow.de/DEB-GX/branding.zip  | tar -xz - -C

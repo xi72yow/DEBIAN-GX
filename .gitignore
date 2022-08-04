@@ -12,6 +12,7 @@ branding-dev/
 build/config/includes.chroot_after_packages/etc/skel/.local/share/gedit/styles/dracula.xml
 *wallpaper*
 *Wallpaper*
+x-tune/
 
 #appimage
 balenaEtcher-1.7.9-ia32.AppImage

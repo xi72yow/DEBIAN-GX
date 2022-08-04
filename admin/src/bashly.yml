@@ -46,3 +46,7 @@ commands:
   - name: setplymouth
     alias: sp
     help: set setplymouth animation
+
+  - name: setfiles
+    alias: sf
+    help: set files to /home/.deb-gx

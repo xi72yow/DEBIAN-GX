@@ -45,6 +45,7 @@ dgxa_usage() {
   echo "  setcalamares             set files for calamaris installer from branding"
   echo "  setlogin                 set login style"
   echo "  setplymouth              set setplymouth animation"
+  echo "  setfiles                 set files to /home/.deb-gx"
   echo
 
   if [[ -n $long_usage ]]; then
@@ -390,6 +391,36 @@ dgxa_setplymouth_usage() {
   fi
 }
 
+# :command.usage
+dgxa_setfiles_usage() {
+  if [[ -n $long_usage ]]; then
+    printf "dgxa setfiles - set files to /home/.deb-gx\n"
+    echo
+
+  else
+    printf "dgxa setfiles - set files to /home/.deb-gx\n"
+    echo
+
+  fi
+
+  printf "Alias: sf\n"
+  echo
+
+  printf "Usage:\n"
+  printf "  dgxa setfiles\n"
+  printf "  dgxa setfiles --help | -h\n"
+  echo
+
+  if [[ -n $long_usage ]]; then
+    printf "Options:\n"
+    # :command.usage_fixed_flags
+    echo "  --help, -h"
+    printf "    Show this help\n"
+    echo
+
+  fi
+}
+
 # :command.normalize_input
 normalize_input() {
   local arg flags
@@ -684,7 +715,12 @@ dgxa_download_command() {
   curl --location --output "${packages_dir}GGetMp3_amd64.deb" --write-out "%{url_effective}\n" $download_URL
   dpkg-name "${packages_dir}GGetMp3_amd64.deb"
 
-  #Download Config App
+  #Download Config App / maybe later submodule
+  mkdir -p $FILE_SYSTEM_CAP_FOLDER/usr/local/bin
+  git clone https://github.com/xi72yow/x-tune.git $FILE_SYSTEM_CAP_FOLDER/usr/local/bin
+
+  #Download branding
+  #curl -SL https://www.xi72yow.de/DEB-GX/branding.zip  | tar -xz - -C
 }
 
 # :command.function
@@ -930,6 +966,19 @@ dgxa_setplymouth_command() {
   fi
 }
 
+# :command.function
+dgxa_setfiles_command() {
+  # src/setfiles_command.sh
+  echo "# this file is located in 'src/setfiles_command.sh'"
+  echo "# code for 'dgxa setfiles' goes here"
+  echo "# you can edit it freely and regenerate (it will not be overwritten)"
+  inspect_args
+
+  mkdir -p $USER_LIVE_HOME_FOLDER/.deb-gx
+  cp -r ./branding/apps $USER_LIVE_HOME_FOLDER/.deb-gx/
+  cp ./branding/xi72yowde.ttf $USER_LIVE_HOME_FOLDER/.deb-gx/xi72yowde.ttf
+}
+
 # :command.parse_requirements
 parse_requirements() {
   # :command.fixed_flags_filter
@@ -1029,6 +1078,13 @@ parse_requirements() {
     action="setplymouth"
     shift
     dgxa_setplymouth_parse_requirements "$@"
+    shift $#
+    ;;
+
+  setfiles | sf )
+    action="setfiles"
+    shift
+    dgxa_setfiles_parse_requirements "$@"
     shift $#
     ;;
 
@@ -1528,6 +1584,48 @@ dgxa_setplymouth_parse_requirements() {
   # :command.user_filter
 }
 
+# :command.parse_requirements
+dgxa_setfiles_parse_requirements() {
+  # :command.fixed_flags_filter
+  case "${1:-}" in
+  --help | -h )
+    long_usage=yes
+    dgxa_setfiles_usage
+    exit
+    ;;
+
+  esac
+  # :command.environment_variables_filter
+  # :command.dependencies_filter
+  # :command.command_filter
+  action="setfiles"
+  # :command.parse_requirements_while
+  while [[ $# -gt 0 ]]; do
+    key="$1"
+    case "$key" in
+
+    -?* )
+      printf "invalid option: %s\n" "$key"
+      exit 1
+      ;;
+
+    * )
+      # :command.parse_requirements_case
+      # :command.parse_requirements_case_simple
+      printf "invalid argument: %s\n" "$key"
+      exit 1
+      ;;
+
+    esac
+  done
+  # :command.required_args_filter
+  # :command.required_flags_filter
+  # :command.catch_all_filter
+  # :command.default_assignments
+  # :command.whitelist_filter
+  # :command.user_filter
+}
+
 # :command.initialize
 initialize() {
   version="0.1.0"
@@ -1637,6 +1735,14 @@ run() {
       dgxa_setplymouth_usage
     else
       dgxa_setplymouth_command
+    fi
+
+  elif [[ $action == "setfiles" ]]; then
+    if [[ ${args[--help]:-} ]]; then
+      long_usage=yes
+      dgxa_setfiles_usage
+    else
+      dgxa_setfiles_command
     fi
 
   elif [[ $action == "root" ]]; then
