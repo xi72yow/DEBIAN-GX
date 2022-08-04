@@ -1,3 +1,4 @@
+![alt text](https://xi72yow.de/gx-assets/banner.png)
 <h1 align="left">DEBIAN-GX</h1>
 
 <p align="center">
@@ -8,8 +9,8 @@
   <img src="https://img.shields.io/github/issues/xi72yow/DEBIAN-GX?color=violet&style=for-the-badge">
 </p>
 
-![DEB-GX logo](./gx-assets/logoPNGdark.png#gh-light-mode-only)
-![DEB-GX logo](./gx-assets/logoPNGwhite.png#gh-dark-mode-only)
+![DEB-GX logo](https://xi72yow.de/gx-assets/logoPNGdark.png#gh-light-mode-only)
+![DEB-GX logo](https://xi72yow.de/gx-assets/logoPNGwhite.png#gh-dark-mode-only)
 
 ## Waht is DEB-GX
 
