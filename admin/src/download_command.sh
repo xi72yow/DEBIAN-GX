@@ -11,7 +11,13 @@ packages_dir="build/config/packages.chroot/"
 
 #theming
 #download branding files to branding directory
-#curl -SL https://www.xi72yow.de/DEB-GX/branding.zip  | tar -xz - -C
+if validate_dir_exists ./branding; then
+    echo "Downloading branding files..."
+    curl -o branding.zip "https://xi72yow.de/DEBIAN-GX/branding.zip"
+    unzip branding.zip
+else
+    echo "branding files already exists. Skipping..."
+fi
 
 #wallpaper
 if validate_file_exists "${styles_dir}backgrounds/debgx/Wallpaper.png"; then
