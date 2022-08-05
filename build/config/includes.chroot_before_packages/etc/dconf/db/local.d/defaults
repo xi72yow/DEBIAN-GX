@@ -336,3 +336,6 @@ sort-order='ascending'
 type-format='category'
 window-position=(13, 11)
 window-size=(1307, 936)
+
+[org/gnome/login-screen]
+logo='/usr/share/images/vendor-logos/logo-text-version-64.png'
