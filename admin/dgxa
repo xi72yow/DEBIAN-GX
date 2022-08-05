@@ -690,8 +690,8 @@ dgxa_download_command() {
 
   mkdir -p "${packages_dir}"
 
-  #Github Desktop "Not Official"
-  download_URL=$(get_URL_from_latest_release_for_deb "shiftkey/desktop")
+  #Github Desktop "Not Official" and restyled
+  download_URL=$(get_URL_from_latest_release_for_deb "xi72yow/desktop-drac")
   curl --location --output "${packages_dir}Github_Desktop_amd64.deb" --write-out "%{url_effective}\n" $download_URL
   dpkg-name "${packages_dir}Github_Desktop_amd64.deb"
 
