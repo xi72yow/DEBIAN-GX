@@ -9,9 +9,6 @@
   <img src="https://img.shields.io/github/issues/xi72yow/DEBIAN-GX?color=violet&style=for-the-badge">
 </p>
 
-![DEB-GX logo](https://xi72yow.de/DEBIAN-GX/gx-assets/logoPNGdark.png#gh-light-mode-only)
-![DEB-GX logo](https://xi72yow.de/DEBIAN-GX/gx-assets/logoPNGwhite.png#gh-dark-mode-only)
-
 ## Waht is DEB-GX
 
 DEB GX short for (Debian Gnome xi72yow) is an pre configured Debian System with Gnome Desktop. This Debian Spin is ready to work with and then entertain the user. If you are interested see this Video (soon) or try it by yourself.
