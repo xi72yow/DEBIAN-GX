@@ -58,7 +58,7 @@ In order to create your own Debian spin, it is advisable to test and work with L
    ./admin/dgxa sl
    ```
 
-5. set login plymouth
+5. set plymouth splash
 
    ```sh
    ./admin/dgxa sp
