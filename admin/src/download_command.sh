@@ -90,6 +90,11 @@ download_URL=$(get_URL_from_latest_release_for_deb "xi72yow/desktop-drac")
 curl --location --output "${packages_dir}Github_Desktop_amd64.deb" --write-out "%{url_effective}\n" $download_URL
 dpkg-name "${packages_dir}Github_Desktop_amd64.deb"
 
+#Godot with themed config
+download_URL=$(get_URL_from_latest_release_for_deb "xi72yow/godot-deb")
+curl --location --output "${packages_dir}Godot_amd64.deb" --write-out "%{url_effective}\n" $download_URL
+dpkg-name "${packages_dir}Godot_amd64.deb"
+
 #download gum
 download_URL=$(get_URL_from_latest_release_for_deb "charmbracelet/gum")
 curl --location --output "${packages_dir}gum_amd64.deb" --write-out "%{url_effective}\n" $download_URL
