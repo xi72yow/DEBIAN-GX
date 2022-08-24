@@ -13,6 +13,10 @@
 
 DEB GX short for (Debian Gnome xi72yow) is an pre configured Debian System with Gnome Desktop. This Debian Spin is ready to work with and then entertain the user. If you are interested see this Video (soon) or try it by yourself.
 
+## The Dream
+
+In my dream of DEB-GX, the System and all Apps used the same color palette. Currently, it is only in my imagination, but I will pull out all the stops, that the dream will come one day true.
+
 ## Usage
 
 0. Download the latest Version of DEB-GX from this repo
