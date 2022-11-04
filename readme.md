@@ -47,7 +47,7 @@ In order to create your own Debian spin, it is advisable to test and work with L
 2. download all needed files
 
    ```sh
-   chmod +x ./admin/dgxa
+   ./admin/dgxa d
    ```
 
 3. set calamares
