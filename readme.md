@@ -43,35 +43,35 @@ In order to create your own Debian spin, it is advisable to test and work with L
    ```sh
    chmod +x ./admin/dgxa
    ```
+   
+2. install dev dependencies
 
-2. download all needed files
+   ```sh
+   sudo ./admin/dgxa id
+   ```
+
+3. download all needed files
 
    ```sh
    ./admin/dgxa d
    ```
 
-3. set calamares
+4. set calamares
 
    ```sh
    ./admin/dgxa sc
    ```
 
-4. set login screen
+5. set login screen
 
    ```sh
    ./admin/dgxa sl
    ```
 
-5. set plymouth splash
+6. set plymouth splash
 
    ```sh
    ./admin/dgxa sp
-   ```
-
-6. install dev dependencies
-
-   ```sh
-   sudo ./admin/dgxa id
    ```
 
 7. build DEBIAN-GX
