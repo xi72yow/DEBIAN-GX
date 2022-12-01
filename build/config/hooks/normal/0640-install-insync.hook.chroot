@@ -1,0 +1,4 @@
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys ACCAF35C
+echo "deb http://apt.insync.io/debian bullseye non-free contrib" | sudo tee -a /etc/apt/sources.list
+sudo apt update
+sudo apt install insync

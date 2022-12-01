@@ -3,3 +3,4 @@
 echo "chmod cli"
 
 chmod +x /usr/local/bin/cli.sh
+chmod +x /usr/local/bin/ocr.sh

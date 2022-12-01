@@ -6,5 +6,5 @@ inspect_args
 check_root
 
 sudo apt update
-sudo apt install install dpkg-dev ruby-full live-build rpm curl -y
+sudo apt install dpkg-dev ruby-full live-build rpm curl jq zstd -y
 sudo gem install bashly

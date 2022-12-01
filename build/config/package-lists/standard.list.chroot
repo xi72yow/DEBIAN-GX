@@ -1,2 +1,2 @@
 ! Packages Priority standard
-gdebi gparted flameshot filezilla clamtk-gnome inkscape gimp krita g3dviewer blender octave git handbrake obs-studio ckb-next neofetch ffmpeg curl imagemagick imagemagick-doc python3-pip python3-tk python3-dev libnotify-bin
+gparted flameshot filezilla clamtk-gnome inkscape gimp krita g3dviewer blender octave git handbrake obs-studio ckb-next neofetch ffmpeg curl imagemagick imagemagick-doc python3-pip python3-tk python3-dev libnotify-bin xclip tesseract-ocr tesseract-ocr-deu xsel

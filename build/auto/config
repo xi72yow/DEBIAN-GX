@@ -5,7 +5,7 @@ set -e
 lb config noauto \
      -a amd64 \
      --distribution bullseye \
-     --linux-packages linux-image-5.18.0-0.bpo.1 \
+     --linux-packages  linux-image-5.18.0-0.deb11.4 \
      --archive-areas "main contrib non-free" \
      --backports true \
      --bootappend-live "boot=live components locales=de_DE.UTF-8 keyboard-layouts=de hostname=deb-gx username=mr-x" \

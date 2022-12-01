@@ -11,12 +11,12 @@ packages_dir="build/config/packages.chroot/"
 
 #theming
 #download branding files to branding directory
-if validate_dir_exists ./branding; then
+if validate_dir_exists "./branding/"; then
+    echo "branding files already exists. Skipping..."
+else
     echo "Downloading branding files..."
     curl -o branding.zip "https://xi72yow.de/DEBIAN-GX/branding.zip"
     unzip branding.zip
-else
-    echo "branding files already exists. Skipping..."
 fi
 
 #wallpaper
@@ -24,7 +24,7 @@ if validate_file_exists "${styles_dir}backgrounds/debgx/Wallpaper.png"; then
     echo "Wallpaper.png found."
     echo "skip this step"
 else
-    if validate_dir_exists ./branding; then
+    if validate_dir_exists "./branding/"; then
         mkdir -p "${styles_dir}backgrounds/debgx"
         cp ./branding/Wallpaper.png "${styles_dir}backgrounds/debgx/Wallpaper.png"
         echo "Wallpaper.png copied."
@@ -36,7 +36,7 @@ fi
 
 # dracula theme gtk and icons
 
-if validate_dir_exists "${styles_dir}icons"; then
+if validate_dir_exists "${styles_dir}icons/"; then
     echo "icons folder found."
     echo "skip this step"
 else
@@ -46,7 +46,7 @@ else
     rm -rf "${styles_dir}DraculaIcons.zip"
 fi
 
-if validate_dir_exists "${styles_dir}themes"; then
+if validate_dir_exists "${styles_dir}themes/"; then
     echo "themes folder found."
     echo "skip this step"
 else
@@ -67,7 +67,7 @@ else
 fi
 
 #gnome-shell extensions
-if validate_dir_exists "${ext_dir}clipboard-indicator@tudmotu.com"; then
+if validate_dir_exists "${ext_dir}clipboard-indicator@tudmotu.com/"; then
     echo "gnome-shell extensions clipboard-indicator folder found."
     echo "skip this step"
 else
@@ -126,26 +126,21 @@ dpkg-name "${packages_dir}Discord_amd64.deb"
 curl https://cdn.lwks.com/releases/2022.1.1/lightworks_2022.1.1_r132926.deb --output "${packages_dir}Lightworks_amd64.deb"
 dpkg-name "${packages_dir}Lightworks_amd64.deb"
 
-#Insync
-curl https://d2t3ff60b2tol4.cloudfront.net/builds/insync_3.7.9.50368-bullseye_amd64.deb --output "${packages_dir}Insync_amd64.deb"
-dpkg-name "${packages_dir}Insync_amd64.deb"
-
-#Prepros
-curl --location --output "${packages_dir}Prepros_amd64.deb" --write-out "%{url_effective}\n" "https://prepros.io/downloads/stable/linux"
-dpkg-name "${packages_dir}Prepros_amd64.deb"
+#Prepros is using now zst compression, is not supported by dpkg yet, need to repack it (to do)
+#curl --location --output "${packages_dir}Prepros_amd64.deb" --write-out "%{url_effective}\n" "https://prepros.io/downloads/stable/linux"
+#dpkg-name "${packages_dir}Prepros_amd64.deb"
 
 #ProtonVPN
-curl https://protonvpn.com/download/protonvpn-stable-release_1.0.1-1_all.deb --output "${packages_dir}ProtonVPN_amd64.deb"
+curl https://repo.protonvpn.com/debian/dists/stable/main/binary-all/protonvpn-stable-release_1.0.3_all.deb --output "${packages_dir}ProtonVPN_amd64.deb"
 dpkg-name "${packages_dir}ProtonVPN_amd64.deb"
 
 #Flashprint
 curl --location --output "${packages_dir}FlashPrint_amd64.deb" --write-out "%{url_effective}\n" "https://en.fss.flashforge.com/10000/software/073e21bbe6ba5c7defb17dbb69708fd8.deb"
 dpkg-name "${packages_dir}FlashPrint_amd64.deb"
 
-#GGetMp3
-download_URL=$(get_URL_from_latest_release_for_deb "xi72yow/GGetMp3")
-curl --location --output "${packages_dir}GGetMp3_amd64.deb" --write-out "%{url_effective}\n" $download_URL
-dpkg-name "${packages_dir}GGetMp3_amd64.deb"
+#Steam
+curl --location --output "${packages_dir}Steam_amd64.deb" --write-out "%{url_effective}\n" "https://repo.steampowered.com/steam/archive/stable/steam_latest.deb"
+dpkg-name "${packages_dir}Steam_amd64.deb"
 
 #Download Config App / maybe later submodule
 if validate_file_exists $FILE_SYSTEM_CBP_FOLDER/usr/local/bin/cli.sh; then

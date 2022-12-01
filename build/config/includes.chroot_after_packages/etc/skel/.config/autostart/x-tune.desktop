@@ -1,9 +1,0 @@
-[Desktop Entry]
-Version=1.0
-Name=X-Tune        
-Comment=tune DEB-GX
-Exec=bash -c '/usr/local/bin/cli.sh;$SHELL'
-Icon=utilities-terminal
-Terminal=true 
-Type=Application
-Categories=Application;
