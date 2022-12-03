@@ -13,14 +13,12 @@ sudo lb clean
 lb config
 sudo lb build
 
-if [ $? -eq 0 ]; then
+if validate_file_exists "build/live-image-amd64.hybrid.iso"; then
     #sudo mv ./build/live-image-amd64.hybrid.iso ./build/deb-gx_000-amd64.hybrid.iso
     echo "Build $(green done). See build/live-image-amd64.hybrid.iso"
-
+    end=$(date +%s)
+    runtime=$((end - start))
+    echo "Time: $runtime seconds"
 else
     echo "There was an $(red error) building the iso."
 fi
-
-end=$(date +%s)
-runtime=$((end - start))
-echo "Time: $runtime seconds"

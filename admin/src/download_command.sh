@@ -141,13 +141,3 @@ dpkg-name "${packages_dir}FlashPrint_amd64.deb"
 #Steam
 curl --location --output "${packages_dir}Steam_amd64.deb" --write-out "%{url_effective}\n" "https://repo.steampowered.com/steam/archive/stable/steam_latest.deb"
 dpkg-name "${packages_dir}Steam_amd64.deb"
-
-#Download Config App / maybe later submodule
-if validate_file_exists $FILE_SYSTEM_CBP_FOLDER/usr/local/bin/cli.sh; then
-    echo "cli.sh found, remove this file and regenerate"
-    rm -rf $FILE_SYSTEM_CBP_FOLDER/usr/local/bin/cli.sh
-fi
-
-mkdir -p $FILE_SYSTEM_CBP_FOLDER/usr/local/bin
-curl -o $FILE_SYSTEM_CBP_FOLDER/usr/local/bin/cli.sh https://raw.githubusercontent.com/xi72yow/x-tune/main/cli.sh
-echo "cli.sh downloaded"
