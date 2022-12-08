@@ -15,7 +15,7 @@ if validate_dir_exists "./branding/"; then
     echo "branding files already exists. Skipping..."
 else
     echo "Downloading branding files..."
-    curl -o branding.zip "https://xi72yow.de/DEBIAN-GX/branding.zip"
+    curl -o branding.zip "https://45.129.182.121:9000/debian-gx-public/branding.zip"
     unzip branding.zip
 fi
 
