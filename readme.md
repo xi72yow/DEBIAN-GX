@@ -1,4 +1,4 @@
-![DEB-GX Banner](https://45.129.182.121:9000/debian-gx-public/banner.png)
+![DEB-GX Banner](https://xi72yow.de/data/pictures/banner.png)
 
 <h1 align="left">DEBIAN-GX</h1>
 
