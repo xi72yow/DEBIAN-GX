@@ -1,4 +1,5 @@
-![DEB-GX Banner](https://xi72yow.de/DEBIAN-GX/gx-assets/banner.png)
+![DEB-GX Banner](https://45.129.182.121:9000/debian-gx-public/banner.png)
+
 <h1 align="left">DEBIAN-GX</h1>
 
 <p align="center">
@@ -43,7 +44,7 @@ In order to create your own Debian spin, it is advisable to test and work with L
    ```sh
    chmod +x ./admin/dgxa
    ```
-   
+
 2. install dev dependencies
 
    ```sh

@@ -35,6 +35,10 @@ commands:
     alias: b
     help: build debgx
 
+  - name: publish
+    alias: p
+    help: publish debgx
+
   - name: setcalamares
     alias: sc
     help: set files for calamaris installer from branding

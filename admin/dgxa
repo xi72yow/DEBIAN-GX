@@ -42,6 +42,7 @@ dgxa_usage() {
   echo "  generateloginscreen      generates gresource for login screen needs gnome-shell-theme.gresource in lfs and wallpaper in branding"
   echo "  generateplymouthsplash   generates plymouth splash from plymouth.mp4 in branding or used the debgx_plymouth"
   echo "  build                    build debgx"
+  echo "  publish                  publish debgx"
   echo "  setcalamares             set files for calamaris installer from branding"
   echo "  setlogin                 set login style"
   echo "  setplymouth              set setplymouth animation"
@@ -305,6 +306,38 @@ dgxa_build_usage() {
   printf "Usage:\n"
   printf "  dgxa build\n"
   printf "  dgxa build --help | -h\n"
+  echo
+
+  # :command.long_usage
+  if [[ -n $long_usage ]]; then
+    printf "Options:\n"
+
+    # :command.usage_fixed_flags
+    echo "  --help, -h"
+    printf "    Show this help\n"
+    echo
+
+  fi
+}
+
+# :command.usage
+dgxa_publish_usage() {
+  if [[ -n $long_usage ]]; then
+    printf "dgxa publish - publish debgx\n"
+    echo
+
+  else
+    printf "dgxa publish - publish debgx\n"
+    echo
+
+  fi
+
+  printf "Alias: p\n"
+  echo
+
+  printf "Usage:\n"
+  printf "  dgxa publish\n"
+  printf "  dgxa publish --help | -h\n"
   echo
 
   # :command.long_usage
@@ -598,11 +631,11 @@ log() {
 #TODO: find control file and place in DEBIAN/control
 #TODO: remove curious . folder from data.tar.xz
 
-dpkg-deb --info Prepros-7.7.0.deb
-if [ $? -eq 0 ]; then
-    echo OK
-else
-    echo FAIL
+#dpkg-deb --info Prepros-7.7.0.deb
+#if [ $? -eq 0 ]; then
+   # echo OK
+#else
+   # echo FAIL
     #mkdir -p package
     #ar x Prepros-7.7.0.deb --output package
     #for i in package/*.zst; do
@@ -612,14 +645,14 @@ else
     #done
     #packFiles=""
     #for entry in "package"/*; do
-        packFiles="${packFiles} ${entry}"
+        #packFiles="${packFiles} ${entry}"
     #    echo "$entry"
     #done
     #echo $packFiles
-    dpkg-deb --build --root-owner-group package
+    #dpkg-deb --build --root-owner-group package
     #ar -m -c -a sdsd package.deb $packFiles
-    dpkg-name package.deb
-fi
+    #dpkg-name package.deb
+#fi
 
 # src/lib/sample_function.sh
 sample_function() {
@@ -681,7 +714,7 @@ dgxa_download_command() {
       echo "branding files already exists. Skipping..."
   else
       echo "Downloading branding files..."
-      curl -o branding.zip "https://xi72yow.de/DEBIAN-GX/branding.zip"
+      curl -o branding.zip "https://45.129.182.121:9000/debian-gx-public/branding.zip"
       unzip branding.zip
   fi
 
@@ -1002,6 +1035,40 @@ dgxa_build_command() {
 }
 
 # :command.function
+dgxa_publish_command() {
+  # src/publish_command.sh
+  if validate_file_exists "./build/live-image-amd64.hybrid.iso"; then
+      echo "start publishing"
+      VERSION=$(jq -r .version dgx.json)
+      BUMPED_VERSION=$(echo $VERSION | awk -F. '/[0-9]+\./{$NF++;print}' OFS=.)
+      echo "Bumping version from $VERSION to $BUMPED_VERSION"
+      read -p "Are you sure? " -n 1 -r
+      echo
+      if [[ ! $REPLY =~ ^[Yy]$ ]]; then
+          [[ "$0" = "$BASH_SOURCE" ]] && exit 1 || return 1 # handle exits from shell or function but don't exit interactive shell
+      fi
+      jq --arg a "${BUMPED_VERSION}" '.version = $a' dgx.json >"tmp" && mv "tmp" dgx.json
+
+      #later for actions
+      #git push origin $BUMPED_VERSION
+      #git push origin main
+
+      FILESIZE=$(du -bs ./build/live-image-amd64.hybrid.iso | awk '{print $1/2^30}')
+      SHA256=$(sha256sum ./build/live-image-amd64.hybrid.iso | awk '{print $1}')
+
+      NOTES="# Debian-GX Release"$'\n'"GitHub allows Releases with the max size of 2Gb. Debian-GX is much bigger ca. ${FILESIZE}Gb. You can load the iso from [here](https://45.129.182.121:9000/debian-gx-public/debian-gx-amd64.hybrid.iso)."$'\n'"## SHA256 checksum"$'\n'"${SHA256}"
+
+      mcli --insecure cp ./build/live-image-amd64.hybrid.iso myminio/debian-gx-public/debian-gx-amd64.hybrid.iso
+
+      gh release delete "v$VERSION"
+      gh release create "v$BUMPED_VERSION" --notes "$NOTES"
+  else
+      echo "There is no iso."
+  fi
+
+}
+
+# :command.function
 dgxa_setcalamares_command() {
   # src/setcalamares_command.sh
   echo "# this file is located in 'src/setcalamares_command.sh'"
@@ -1159,6 +1226,13 @@ parse_requirements() {
       action="build"
       shift
       dgxa_build_parse_requirements "$@"
+      shift $#
+      ;;
+
+    publish | p)
+      action="publish"
+      shift
+      dgxa_publish_parse_requirements "$@"
       shift $#
       ;;
 
@@ -1579,6 +1653,50 @@ dgxa_build_parse_requirements() {
 }
 
 # :command.parse_requirements
+dgxa_publish_parse_requirements() {
+  # :command.fixed_flags_filter
+  while [[ $# -gt 0 ]]; do
+    case "${1:-}" in
+      --help | -h)
+        long_usage=yes
+        dgxa_publish_usage
+        exit
+        ;;
+
+      *)
+        break
+        ;;
+
+    esac
+  done
+
+  # :command.command_filter
+  action="publish"
+
+  # :command.parse_requirements_while
+  while [[ $# -gt 0 ]]; do
+    key="$1"
+    case "$key" in
+
+      -?*)
+        printf "invalid option: %s\n" "$key" >&2
+        exit 1
+        ;;
+
+      *)
+        # :command.parse_requirements_case
+        # :command.parse_requirements_case_simple
+        printf "invalid argument: %s\n" "$key" >&2
+        exit 1
+
+        ;;
+
+    esac
+  done
+
+}
+
+# :command.parse_requirements
 dgxa_setcalamares_parse_requirements() {
   # :command.fixed_flags_filter
   while [[ $# -gt 0 ]]; do
@@ -1848,6 +1966,15 @@ run() {
         dgxa_build_usage
       else
         dgxa_build_command
+      fi
+      ;;
+
+    "publish")
+      if [[ ${args[--help]:-} ]]; then
+        long_usage=yes
+        dgxa_publish_usage
+      else
+        dgxa_publish_command
       fi
       ;;
 

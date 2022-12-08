@@ -10,11 +10,11 @@
 #TODO: find control file and place in DEBIAN/control
 #TODO: remove curious . folder from data.tar.xz
 
-dpkg-deb --info Prepros-7.7.0.deb
-if [ $? -eq 0 ]; then
-    echo OK
-else
-    echo FAIL
+#dpkg-deb --info Prepros-7.7.0.deb
+#if [ $? -eq 0 ]; then
+   # echo OK
+#else
+   # echo FAIL
     #mkdir -p package
     #ar x Prepros-7.7.0.deb --output package
     #for i in package/*.zst; do
@@ -24,11 +24,11 @@ else
     #done
     #packFiles=""
     #for entry in "package"/*; do
-        packFiles="${packFiles} ${entry}"
+        #packFiles="${packFiles} ${entry}"
     #    echo "$entry"
     #done
     #echo $packFiles
-    dpkg-deb --build --root-owner-group package
+    #dpkg-deb --build --root-owner-group package
     #ar -m -c -a sdsd package.deb $packFiles
-    dpkg-name package.deb
-fi
+    #dpkg-name package.deb
+#fi
