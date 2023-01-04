@@ -7,6 +7,10 @@ check_root
 
 start=$(date +%s)
 
+export KERNEL="6.0.0-0.deb11.6"
+
+sed -i "s/<KERNEL>/$KERNEL/g" ./build/config/hooks/normal/0615-install-linux-headers.hook.chroot
+
 cd build
 
 sudo lb clean
@@ -22,3 +26,5 @@ if validate_file_exists "./live-image-amd64.hybrid.iso"; then
 else
     echo "There was an $(red error) building the iso."
 fi
+
+sed -i "s/$KERNEL/<KERNEL>/g" ./build/config/hooks/normal/0615-install-linux-headers.hook.chroot

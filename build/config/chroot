@@ -22,7 +22,7 @@ LB_KEYRING_PACKAGES="debian-archive-keyring"
 LB_LINUX_FLAVOURS_WITH_ARCH="amd64"
 
 # Set kernel packages to use
-LB_LINUX_PACKAGES="linux-image-5.18.0-0.deb11.4"
+LB_LINUX_PACKAGES="linux-image-6.0.0-0.deb11.6"
 
 # Enable security updates
 LB_SECURITY="true"

@@ -1,5 +1,4 @@
 #!/bin/sh
 
 echo "install linux-headers"
-
-apt install linux-headers-`uname -r` -y
+apt install build-essential linux-headers-<KERNEL>-amd64 dkms -y

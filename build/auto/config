@@ -5,7 +5,8 @@ set -e
 lb config noauto \
      -a amd64 \
      --distribution bullseye \
-     --linux-packages  linux-image-5.18.0-0.deb11.4 \
+     --linux-flavours "amd64" \
+     --linux-packages "linux-image-$KERNEL" \
      --archive-areas "main contrib non-free" \
      --backports true \
      --bootappend-live "boot=live components locales=de_DE.UTF-8 keyboard-layouts=de hostname=deb-gx username=mr-x" \
@@ -18,4 +19,4 @@ lb config noauto \
      --iso-application "debgx00" \
      --iso-publisher "xi72yow.de" \
      --iso-preparer "xi72yow.de" \
-	"${@}"
+     "${@}"
