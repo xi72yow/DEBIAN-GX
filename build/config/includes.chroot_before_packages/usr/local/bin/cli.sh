@@ -23,6 +23,11 @@ install_nvm() {
     fi
 }
 
+install_docker() {
+    curl -fsSL https://get.docker.com -o get-docker.sh
+    sudo sh get-docker.sh
+}
+
 install_newest_backport_kernel() {
     sudo apt install -t bullseye-backports linux-image-amd64
     sudo apt install -t bullseye-backports firmware-linux firmware-linux-nonfree firmware-misc-nonfree
@@ -51,6 +56,9 @@ menue() {
     case "$TYPE" in
     "install nvm")
         confirm install_nvm "Would you install nvm?"
+        ;;
+    "install docker")
+        confirm install_docker "Would you install docker?"
         ;;
     "new Kernel")
         confirm install_newest_backport_kernel "Would you install new kernel?"
